@@ -2,7 +2,12 @@
 .vscode
 build
 tmp
-
+yarn-error.log
+*.ppm
+*.png
+*.jpg
+*.gif
+*.mp4
 
 # Created by https://www.toptal.com/developers/gitignore/api/c,c++,cmake,visualstudio,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=c,c++,cmake,visualstudio,visualstudiocode

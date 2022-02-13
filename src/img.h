@@ -30,14 +30,20 @@ void img_write(void) {
   fclose(f);
 }
 
+
+void img_read(const char filepath[]) {
+  FILE *f = fopen(filepath, "rb");
+  if (f == NULL) { fprintf(stderr, "can't open %s\n", filepath); exit(1); }
+  fread(buf, sizeof(buf), 1, f);
+  fclose(f);
+}
+
 void img_putpixel(struct color c, int x, int y) {
   if(x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT) { return; }
   buf[HEIGHT-y-1][x][0] = c.r;
   buf[HEIGHT-y-1][x][1] = c.g;
   buf[HEIGHT-y-1][x][2] = c.b;
 }
-
-static int stroke = 5;
 
 void img_fillcircle(struct color c, double x, double y, double r) {
   int imin = (int)(x - r - 1), imax = (int)(x + r + 1);
@@ -49,33 +55,4 @@ void img_fillcircle(struct color c, double x, double y, double r) {
     }
   }
 }
-
-void img_circle(struct color c, double x, double y, double r) {
-  int imin = (int)(x - r - 1), imax = (int)(x + r + 1);
-  int jmin = (int)(y - r - 1), jmax = (int)(y + r + 1);
-  int i, j;
-  for(j = jmin; j <= jmax; ++j) {
-    for(i = imin; i <= imax; ++i) {
-      if((x-i)*(x-i) + (y-j)*(y-j) <= r*r) {
-        if((x-i)*(x-i) + (y-j)*(y-j) >= (r-stroke)*(r-stroke)) {
-          img_putpixel(c, i, j);
-        }
-      }
-    }
-  }
-}
-
-void img_rect(struct color c, double x, double y, double r) {
-  int imin = (int)(x - r - 1), imax = (int)(x + r + 1);
-  int jmin = (int)(y - r - 1), jmax = (int)(y + r + 1);
-  int i, j;
-  for(j = jmin; j <= jmax; ++j) {
-    for(i = imin; i <= imax; ++i) {
-      if (jmin+stroke < j || j < jmax-stroke) {return;}
-      if (imin+stroke < i || i < imax-stroke) {return;}
-      img_putpixel(c, i, j);
-    }
-  }
-}
-
 #endif // _IMG_H
