@@ -3,15 +3,13 @@
 #include <vector>
 #include "Matrix.hpp"
 #include "Vector.hpp"
-#include "Quat.hpp"
-// #undef min
-// #undef max
+#include "Quater.hpp"
 
+typedef double Scalar
 struct Math {
-  using Index = int;
-  using Scalar = Scalar;
-  using Vector = Vector3<Scalar>;
-  using Matrix = Matrix<Scalar>;
-  using Quat = Quat<Scalar>;
+  using Scalar = ::STAR::Scalar;
+  using Vector = ::STAR::Vector;
+  using Matrix = ::STAR::Matrix;
+  using Quater = ::STAR::Quater;
 }  // struct Math
 #endif  //_MATH_MATH_
