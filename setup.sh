@@ -4,7 +4,7 @@ set -e
 
 # Where will the output go?
 if [ "$(git rev-parse --is-inside-work-tree)" = "true" ];
-then GIT_PATH=`git rev-parse --show-toplevel`
+then GIT_PATH="$(git rev-parse --show-toplevel)/"
 else GIT_PATH="$(pwd)/star/"
 fi
 
