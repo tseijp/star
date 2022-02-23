@@ -1,7 +1,6 @@
 ### my changed ###
 .vscode
 build
-!BUILD
 tmp
 yarn-error.log
 *.ppm
@@ -10,23 +9,8 @@ yarn-error.log
 *.gif
 *.mp4
 
-# Created by https://www.toptal.com/developers/gitignore/api/c,c++,cmake,bazel,visualstudio,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=c,c++,cmake,bazel,visualstudio,visualstudiocode
-
-### Bazel ###
-# gitignore template for Bazel build system
-# website: https://bazel.build/
-
-# Ignore all bazel-* symlinks. There is no full list since this can change
-# based on the name of the directory bazel is cloned into.
-bazel-*
-
-# Directories for the Bazel IntelliJ plugin containing the generated
-# IntelliJ project files and plugin configuration. Seperate directories are
-# for the IntelliJ, Android Studio and CLion versions of the plugin.
-.ijwb/
-.aswb/
-.clwb/
+# Created by https://www.toptal.com/developers/gitignore/api/c,c++,cmake,visualstudio,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=c,c++,cmake,visualstudio,visualstudiocode
 
 ### C ###
 # Prerequisites
@@ -530,4 +514,4 @@ FodyWeavers.xsd
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
-# End of https://www.toptal.com/developers/gitignore/api/c,c++,cmake,bazel,visualstudio,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/c,c++,cmake,visualstudio,visualstudiocode
