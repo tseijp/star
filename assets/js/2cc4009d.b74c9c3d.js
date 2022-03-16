@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_star_website=self.webpackChunk_star_website||[]).push([[798],{8185:function(s){s.exports={blogPosts:[]}}}]);
