@@ -1,0 +1,28 @@
+{
+    "name": "@star/root",
+    "version": "1.0.0",
+    "author": "tsei",
+    "license": "MIT",
+    "private": true,
+    "workspaces": [
+        "packages/*",
+        "website"
+    ],
+    "scripts": {
+        "main": "cd src/tmp && gcc ../main.cpp -lm && a",
+        "mp4": "cd src/tmp && ffmpeg out.mp4 -y -r 60 -i img%04d.ppm -vcodec libx264 -pix_fmt yuv420p",
+        "gif": "cd src/tmp && ffmpeg out.gif -y -r 60 -f image2 -i img%04d.ppm -vf scale=300x200",
+        "test": "bazel test //...",
+        "bazel": "cd src && bazel build --config=asmjs //main:helloworld.js",
+        "gtest": "yarn cmake && yarn ctest",
+        "cmake": "cd src && cmake -S . -B build && cmake --build build",
+        "ctest": "cd src/build && ctest -VV",
+        "emcc": "emcc src/main.c -Os -s WASM=1 -s SIDE_MODULE=1 -s BINARYEN_ASYNC_COMPILATION=0 -o src/main.wasm",
+        "start": "cd website && yarn && yarn deploy",
+        "build": "cd website && yarn && yarn deploy",
+        "deploy": "cd website && yarn && yarn deploy"
+    },
+    "devDependencies": {
+        "lerna": "^4.0.0"
+    }
+}
