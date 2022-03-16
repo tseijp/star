@@ -12,11 +12,11 @@ static ::STAR::Vector position = {WIDTH / 2, HEIGHT / 2, 0};
 static ::STAR::Vector rotation = {0, 0, 0};
 static int isInitialized = 0;
 static int timeStamp = 0;
-static double radius = 50.0;
+static double radius = 25.0;
 
-void star_init(void) {
+void star_init(const char filepath[]="world.ppm") {
   int i, j;
-  img_read("world.ppm");
+  img_read(filepath);
   for (j = 0; j < HEIGHT; ++j) {
     for (i = 0; i < WIDTH; ++i) {
       double phi = 2 * M_PI * j / HEIGHT;

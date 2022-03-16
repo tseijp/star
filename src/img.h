@@ -2,7 +2,7 @@
 #define _IMG_H
 #define WIDTH 300
 #define HEIGHT 200
-#define FRAME 100
+#define FRAME 180
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -16,7 +16,7 @@ void img_clear(void) {
   int i, j;
   for(j = 0; j < HEIGHT; ++j) {
     for(i = 0; i < WIDTH; ++i) {
-      buf[j][i][0] = buf[j][i][1] = buf[j][i][2] = 255;
+      buf[j][i][0] = buf[j][i][1] = buf[j][i][2] = 0;
     }
   }
 }
@@ -29,7 +29,6 @@ void img_write(void) {
   fwrite(buf, sizeof(buf), 1, f);
   fclose(f);
 }
-
 
 void img_read(const char filepath[]) {
   FILE *f = fopen(filepath, "rb");

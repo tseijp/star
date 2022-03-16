@@ -19,14 +19,15 @@ struct Quater {
   S& y() { return _y; }
   S& z() { return _z; }
   S& w() { return _w; }
-  S& operator[](int i) {
+
+  inline S& operator[](int i) {
     switch (i) {
       case 0: { return _x; }
       case 1: { return _y; }
       case 2: { return _z; }
       case 3: { return _w; }
       default: { }
-    };
+    }
     assert(0);
     return _x;
   }
@@ -38,41 +39,42 @@ struct Quater {
     printf("%f, ", _w);
     printf("\n");
   }
+ 
   explicit Quater(int unused = 0) {}
-  Quater (Q& _) { set(_.x(), _.y(), _.z(), _.w()); }
-  Quater (S x, S y, S z, S w) { set(x, y, z, w); }
+  Quater(Q& _) { set(_.x(), _.y(), _.z(), _.w()); }
+  Quater(S x, S y, S z, S w) { set(x, y, z, w); }
                                   
-  Q& setX (S x) { _x = x; return *this; }
-  Q& setY (S y) { _y = y; return *this; }
-  Q& setZ (S z) { _z = z; return *this; }
-  Q& setW (S w) { _w = w; return *this; }
-  Q& set (S s) { return (*this).setX(s).setY(s).setZ(s); }
-  Q& set (S x, S y, S z, S w) { return (*this).setX(x).setY(y).setZ(z); }
+  inline Q& setX(S x) { _x = x; return *this; }
+  inline Q& setY(S y) { _y = y; return *this; }
+  inline Q& setZ(S z) { _z = z; return *this; }
+  inline Q& setW(S w) { _w = w; return *this; }
+  inline Q& set(S s) { return (*this).setX(s).setY(s).setZ(s); }
+  inline Q& set(S x, S y, S z, S w) { return (*this).setX(x).setY(y).setZ(z); }
 
   /**
    * Math
    */
-  S length() { return dot(*this); }
-  S dot (Q& _) { return _x*_.x() + _y*_.y() + _z*_.z() + _w*_.w(); }
-  Q& operator+=(S& s) { _x+=s; _y+=s; _z+=s; _w+=s; return *this; }
-  Q& operator-=(S& s) { _x-=s; _y-=s; _z-=s; _w-=s; return *this; }
-  Q& operator*=(S& s) { _x*=s; _y*=s; _z*=s; _w*=s; return *this; }
-  Q& operator/=(S& s) { _x/=s; _y/=s; _z/=s; _w/=s; return *this; }
-  Q& operator+=(Q& _) { _x+=_.x(); _y+=_.y(); _z+=_.z(); _w+=_.w(); return *this; }
-  Q& operator-=(Q& _) { _x-=_.x(); _y-=_.y(); _z-=_.z(); _w-=_.w(); return *this; }
-  Q& operator*=(Q& _) {
+  inline S length() { return dot(*this); }
+  inline S dot (Q& _) { return _x*_.x() + _y*_.y() + _z*_.z() + _w*_.w(); }
+  inline Q& operator+=(S& s) { _x+=s; _y+=s; _z+=s; _w+=s; return *this; }
+  inline Q& operator-=(S& s) { _x-=s; _y-=s; _z-=s; _w-=s; return *this; }
+  inline Q& operator*=(S& s) { _x*=s; _y*=s; _z*=s; _w*=s; return *this; }
+  inline Q& operator/=(S& s) { _x/=s; _y/=s; _z/=s; _w/=s; return *this; }
+  inline Q& operator+=(Q& _) { _x+=_.x(); _y+=_.y(); _z+=_.z(); _w+=_.w(); return *this; }
+  inline Q& operator-=(Q& _) { _x-=_.x(); _y-=_.y(); _z-=_.z(); _w-=_.w(); return *this; }
+  inline Q& operator*=(Q& _) {
     return set(_w*_.x() + _x*_.w() + _y*_.z() - _z*_.y(),
                _w*_.y() + _y*_.w() + _z*_.x() - _x*_.z(),
                _w*_.z() + _z*_.w() + _x*_.y() - _y*_.x(),
                _w*_.w() - _x*_.x() - _y*_.y() - _z*_.z());
   }
 }; // struct Quater
-Quater operator+ (Quater& _, Scalar& s) { Quater r {_}; return r += s; }
-Quater operator- (Quater& _, Scalar& s) { Quater r {_}; return r -= s; }
-Quater operator/ (Quater& _, Scalar& s) { Quater r {_}; return r /= s; }
-Quater operator* (Quater& _, Scalar& s) { Quater r {_}; return r *= s; }
-Quater operator+ (Quater& _, Quater& q) { Quater r {_}; return r += q; }
-Quater operator- (Quater& _, Quater& q) { Quater r {_}; return r -= q; }
-Quater operator* (Quater& _, Quater& q) { Quater r {_}; return r *= q; }
+inline Quater operator+(Quater& _, Scalar& s) { Quater r(_); return r+=s; }
+inline Quater operator-(Quater& _, Scalar& s) { Quater r(_); return r-=s; }
+inline Quater operator/(Quater& _, Scalar& s) { Quater r(_); return r/=s; }
+inline Quater operator*(Quater& _, Scalar& s) { Quater r(_); return r*=s; }
+inline Quater operator+(Quater& _, Quater& q) { Quater r(_); return r+=q; }
+inline Quater operator-(Quater& _, Quater& q) { Quater r(_); return r-=q; }
+inline Quater operator*(Quater& _, Quater& q) { Quater r(_); return r*=q; }
 } // namespace STAR
 #endif  //_MATH_QUATER_
